@@ -9,8 +9,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import com.example.weatherapp.domain.location.LocationTracker
 import com.google.android.gms.location.FusedLocationProviderClient
+import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.jar.Manifest
 import javax.inject.Inject
+import kotlin.coroutines.resume
 
 class DefaultLocationTracker @Inject constructor(
     private val locationClient: FusedLocationProviderClient,
@@ -30,6 +32,32 @@ class DefaultLocationTracker @Inject constructor(
         val locationManager = application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGpsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
                 locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        if (!hasAccessCoarseLocationPermission || !hasAccessFineLocationPermission || !isGpsEnabled){
+            return null
+        }
+
+        return suspendCancellableCoroutine { cont->
+            locationClient.lastLocation.apply {
+                if (isComplete){
+                    if (isSuccessful){
+                        cont.resume(result)
+                    } else {
+                        cont.resume(null)
+                    }
+
+                    return@suspendCancellableCoroutine
+                }
+                addOnSuccessListener {
+                    cont.resume(it)
+                }
+                addOnFailureListener {
+                    cont.resume(null)
+                }
+                addOnCanceledListener {
+                    cont.cancel()
+                }
+            }
+        }
     }
 
 }
