@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.Modifier
 import com.example.weatherapp.presentation.ui.theme.DarkBlue
+import com.example.weatherapp.presentation.ui.theme.DeepBlue
 import com.example.weatherapp.presentation.ui.theme.WeatherAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EarlyEntryPoint
@@ -43,8 +44,8 @@ class MainActivity : ComponentActivity() {
                        .background(DarkBlue)
                ) {
                    WeatherCard(
-                       state = ,
-                       backgroundColor =
+                       state = viewModel.state,
+                       backgroundColor = DeepBlue
                    )
                }
             }
