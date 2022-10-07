@@ -11,9 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.weatherapp.R
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -63,6 +67,18 @@ fun WeatherCard(
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(32.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                   WeatherDataDisplay(
+                       value = data.pressure.toInt(),
+                       unit = "hpa",
+                       icon = ImageVector.vectorResource(id = R.drawable.ic_pressure),
+                       iconTint = Color.White,
+                       textStyle = TextStyle(color = Color.White)
+                   )
+                }
             }
 
         }
