@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.domain.location.LocationTracker
 import com.example.weatherapp.domain.repository.WeatherRepository
+import com.example.weatherapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,14 +16,27 @@ import javax.inject.Inject
 class WeatherViewModel @Inject constructor(
     private val repository: WeatherRepository,
     private val locationTracker: LocationTracker
-) : ViewModel(){
+) : ViewModel() {
 
     var state by mutableStateOf(WeatherState())
-     private set
+        private set
 
-    fun loadWeatherInfo(){
+    fun loadWeatherInfo() {
         viewModelScope.launch {
+            state = state.copy(
+                isLoading = true,
+                error = null
+            )
+            locationTracker.getCurrentLocation()?.let { location ->
+                when(val result = repository.getWeatherData(location.latitude,location.longitude)){
+                    is Resource.Success -> {
 
+                    }
+                    is Resource.Error -> {
+                        
+                    }
+                }
+            }
         }
     }
 }
