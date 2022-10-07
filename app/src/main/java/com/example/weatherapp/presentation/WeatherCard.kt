@@ -78,6 +78,20 @@ fun WeatherCard(
                        iconTint = Color.White,
                        textStyle = TextStyle(color = Color.White)
                    )
+                    WeatherDataDisplay(
+                        value = data.humidity.toInt(),
+                        unit = "%",
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_drop),
+                        iconTint = Color.White,
+                        textStyle = TextStyle(color = Color.White)
+                    )
+                    WeatherDataDisplay(
+                        value = data.windSpeed.toInt(),
+                        unit = "km/h",
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_wind),
+                        iconTint = Color.White,
+                        textStyle = TextStyle(color = Color.White)
+                    )
                 }
             }
 
