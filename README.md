@@ -2,9 +2,9 @@
 ## by this App you can see what's the weather like in your Location
 ### The following technologies are used in this project:
 + Compose
-   + for show list weather I use LazyRow in JetpackCompose
+   + for show list weather use LazyRow in JetpackCompose
 + CleanArchitecture
-+ Rest_Api(Restrofit)
++ Rest_Api(Retrofit)
 + Room
 + Dagger-Hilt(Di)
 + Mvvm (in presentationLayer)     
