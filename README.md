@@ -4,4 +4,7 @@
 + Compose
 + CleanArchitecture
 + Rest_Api(Restrofit)
++ Room
++ Dagger_Hilt(Di)
++ Mvvm (in presentationLayer)     
 
