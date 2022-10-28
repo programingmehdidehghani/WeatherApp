@@ -9,3 +9,4 @@
 + Dagger-Hilt(Di)
 + Mvvm (in presentationLayer)     
 
+![weatherApp](https://user-images.githubusercontent.com/74426462/198553529-cdc3e3a2-aeb0-4bf5-a3e6-3a9d496d5f29.jpg)
