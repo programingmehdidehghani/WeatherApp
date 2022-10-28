@@ -3,4 +3,5 @@
 ### The following technologies are used in this project:
 + Compose
 + CleanArchitecture
++ Rest_Api(Restrofit)
 
